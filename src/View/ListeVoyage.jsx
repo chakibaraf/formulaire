@@ -4,17 +4,18 @@ import { useState } from 'react'
 
 const ListeVoyage = (props) => {
     
-    const [change, setChange] = useState({ ville: '', datedepart: '', datearrivee: '', personne: '' });
+    const [change, setChange] = useState({ville:'', datedepart: '', datearrivee: '', personne: '' });
     const handleChange = (e) => {
         setChange({ ...change, [e.target.name]: e.target.value })
         console.log(change)
         
     }
     
-        const handleDelete = (e) => {
+        const handleDelete = (e,datearrivee) => {
             e.preventDefault();
             e.stopPropagation();
-            props.retirerVoyage(e.target.parentNode.firstChild.textContent);
+           
+            props.retirerVoyage(datearrivee);
         }
     const onSubmit =(e)=>{
         e.preventDefault();
@@ -63,12 +64,14 @@ const ListeVoyage = (props) => {
             <h3> Mes destinations :</h3>
             {props.listeVoyages && props.listeVoyages.map((voyage, index) => {
                 return <li key={index}>
+                           
                     <div className='affichage'>
+                           
                         <p>{voyage.ville}</p>
                         <p> {voyage.datedepart}</p>
                         <p>{voyage.datearrivee}</p>
                         <p>{voyage.personne}</p>
-                        <button onClick={handleDelete}>supprimer</button>
+                        <button onClick={ (e) => handleDelete( e,voyage.datearrivee)}>supprimer</button>
                     </div>
                 </li>
             })}

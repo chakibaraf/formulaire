@@ -9,7 +9,7 @@ export const VoyageModelDestination = () => {
     const rajouterVoyage = (voyage)=>{
        
         ViewModel.ajouterVoyage(voyage);
-       console.log(voyage)
+       console.log(voyage);
     }
     return (
       <Fragment>
